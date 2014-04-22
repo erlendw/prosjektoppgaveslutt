@@ -70,7 +70,6 @@ public class RegistrerSøkerPANEL extends JPanel implements ActionListener {
         registrer.addActionListener(this);
         avbryt.addActionListener(this);
 
-kh
     }
 
     public void lagGUI() {
