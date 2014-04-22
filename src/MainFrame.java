@@ -96,8 +96,8 @@ public class MainFrame extends JFrame implements ActionListener {
             visPanel("Oversikt");
         }
         else if(e.getSource()  == knapp[REG_SØKER]){
-        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
-        visPanel("Oversikt");
+        vinduer.add(new RegistrerSøkerPANEL(register, this), "REG SØKER");
+        visPanel("REG SØKER");
         }
         else if(e.getSource()  == knapp[VIS_SØKER]){
         vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");

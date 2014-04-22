@@ -43,6 +43,19 @@ public class BoligBrowse {
             register.leggTil(utleier);
         }
 
+        /*for(int i = 0; i < 100000; i++){
+            String fornavn = fornavns[r.nextInt(fornavns.length)];
+            String etternavn = etternavns[r.nextInt(etternavns.length)];
+            String adresse = adresses[r.nextInt(adresses.length)];
+            String mail = fornavn + "@" + etternavn + ".no";
+
+            Søker søker = new Søker(String.valueOf(i+1), fornavn, etternavn, adresse, mail, String.valueOf(i+100), firma);
+
+            register.leggTil(søker);
+        }*/
+
+
+
 
 
         //JPanel panel = new UtleierOversiktPANEL(register, this);
