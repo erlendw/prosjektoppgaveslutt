@@ -21,7 +21,14 @@ public class MainFrame extends JFrame implements ActionListener {
             "vis kontrakter","Statistikk","BoligBrowse"};
 
     private static final int REG_UTLEIER = 0;
-    private static final int UTLEIER = 1;
+    private static final int VIS_UTLEIER = 1;
+    private static final int REG_SØKER = 2;
+    private static final int VIS_SØKER = 3;
+    private static final int REG_BOLIG = 4;
+    private static final int VIS_BOLIG = 5;
+    private static final int VIS_KONTRAKTER = 6;
+    private static final int VIS_STATS = 7;
+    private static final int VIS_BOLIGBROWSE = 8;
 
 
     private Personregister register;
@@ -84,10 +91,39 @@ public class MainFrame extends JFrame implements ActionListener {
         if(e.getSource() == knapp[REG_UTLEIER]){
             vinduer.add(new RegistrerUtleierPANEL(register, this), "REG UTLEIER");
             visPanel("REG UTLEIER");
-        }else if(e.getSource()  == knapp[UTLEIER]){
+        }else if(e.getSource()  == knapp[VIS_UTLEIER]){
             vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
             visPanel("Oversikt");
         }
+        else if(e.getSource()  == knapp[REG_SØKER]){
+        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
+        visPanel("Oversikt");
+        }
+        else if(e.getSource()  == knapp[VIS_SØKER]){
+        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
+        visPanel("Oversikt");
+        }
+        else if(e.getSource()  == knapp[REG_BOLIG]){
+        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
+        visPanel("Oversikt");
+        }
+        else if(e.getSource()  == knapp[VIS_BOLIG]){
+        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
+        visPanel("Oversikt");
+        }
+        else if(e.getSource()  == knapp[VIS_KONTRAKTER]){
+        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
+        visPanel("Oversikt");
+        }
+        else if(e.getSource()  == knapp[VIS_STATS]){
+        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
+        visPanel("Oversikt");
+        }
+        else if(e.getSource()  == knapp[VIS_BOLIGBROWSE]){
+        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
+        visPanel("Oversikt");
+        }
+
 
 
     }
