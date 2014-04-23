@@ -43,8 +43,11 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
 
     private JTextArea utskriftsområde;
 
+    private JLabel overskrift;
+
     private JPanel feltpanel;
     private JPanel boligtypepanel;
+    private JPanel overskriftpanel;
     private JPanel toppanel;
 
     private JPanel tomtpanel;
@@ -80,9 +83,12 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
         felt = new JTextField[feltnavn.length];
         bokser = new JCheckBox[boksnavn.length];
 
+        overskrift = new JLabel("Registrer ny Bolig");
+
         //toppanel
         feltpanel = new JPanel(new GridLayout(3, 4, 5, 5));
         boligtypepanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        overskriftpanel= new JPanel(new FlowLayout(FlowLayout.CENTER));
         toppanel = new JPanel(new BorderLayout());
 
         //midtpanel
@@ -155,6 +161,7 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
 
         toppanel.add(feltpanel,BorderLayout.CENTER);
         toppanel.add(boligtypepanel,BorderLayout.PAGE_END);
+        tomtpanel.add(overskriftpanel,BorderLayout.PAGE_START);
 
         //midtpanel.add(tomtpanel, BorderLayout.CENTER);
         midtpanel.add(bydelpanel, BorderLayout.PAGE_END);
