@@ -84,6 +84,7 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
         bokser = new JCheckBox[boksnavn.length];
 
         overskrift = new JLabel("Registrer ny Bolig");
+        overskrift.setVisible(true);
 
         //toppanel
         feltpanel = new JPanel(new GridLayout(3, 4, 5, 5));
@@ -159,9 +160,11 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
         knapppanel.add(registrer);
         knapppanel.add(avbryt);
 
+        overskriftpanel.add(overskrift);
+
         toppanel.add(feltpanel,BorderLayout.CENTER);
         toppanel.add(boligtypepanel,BorderLayout.PAGE_END);
-        tomtpanel.add(overskriftpanel,BorderLayout.PAGE_START);
+        toppanel.add(overskriftpanel,BorderLayout.PAGE_START);
 
         //midtpanel.add(tomtpanel, BorderLayout.CENTER);
         midtpanel.add(bydelpanel, BorderLayout.PAGE_END);
