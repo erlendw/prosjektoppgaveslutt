@@ -1,6 +1,8 @@
 
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Random;
 
 /**
@@ -9,6 +11,7 @@ import java.util.Random;
  * Date: 13.04.14
  * Time: 14:11
  * To change this template use File | Settings | File Templates.
+ * testing
  */
 public class BoligBrowse {
     public static void main(String[] args){
@@ -16,6 +19,8 @@ public class BoligBrowse {
         frame.setVisible(true);
 
         Personregister register = new Personregister();
+        Boligregister bregister = new Boligregister();
+        Sokerregister sregister = new Sokerregister();
 
 
 
@@ -30,8 +35,6 @@ public class BoligBrowse {
 
         Random r = new Random();
 
-
-
         for(int i = 0; i < 100000; i++){
             String fornavn = fornavns[r.nextInt(fornavns.length)];
             String etternavn = etternavns[r.nextInt(etternavns.length)];
@@ -42,28 +45,15 @@ public class BoligBrowse {
 
             register.leggTil(utleier);
         }
-
-        /*for(int i = 0; i < 100000; i++){
-            String fornavn = fornavns[r.nextInt(fornavns.length)];
-            String etternavn = etternavns[r.nextInt(etternavns.length)];
-            String adresse = adresses[r.nextInt(adresses.length)];
-            String mail = fornavn + "@" + etternavn + ".no";
-
-            Søker søker = new Søker(String.valueOf(i+1), fornavn, etternavn, adresse, mail, String.valueOf(i+100), firma);
-
-            register.leggTil(søker);
-        }*/
-
-
-
-
-
-        //JPanel panel = new UtleierOversiktPANEL(register, this);
-
-       // frame.getContentPane().add(panel);
-
-        new MainFrame(register);
-
+        new MainFrame(register,bregister,sregister);
+        frame.addWindowListener(
+                new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        System.exit(0);
+                    }
+                }
+        );
     }
 
 

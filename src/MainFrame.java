@@ -18,7 +18,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private JButton[] knapp;
     private String[] knappenavn = { "Registrer utleier","Vis Utleiere","Register Søker",
             "Vis Søkere","Registrer Bolig", "Vis Boliger",
-            "vis kontrakter","Statistikk","BoligBrowse"};
+            "vis kontrakter","Statistikk","BoligBrowse™"};
 
     private static final int REG_UTLEIER = 0;
     private static final int VIS_UTLEIER = 1;
@@ -32,14 +32,17 @@ public class MainFrame extends JFrame implements ActionListener {
 
 
     private Personregister register;
+    private Boligregister bregister;
+    private Sokerregister sregister;
 
 
-    public MainFrame(Personregister register){
-        super("Bolig G* Browse");
+    public MainFrame(Personregister register,Boligregister bregister,Sokerregister sregister){
+        super("Bolig Browse™");
         setLayout(new BorderLayout());
 
         this.register = register;
-
+        this.sregister = sregister;
+        this.bregister = bregister;
 
         initialiser();
 
@@ -96,16 +99,16 @@ public class MainFrame extends JFrame implements ActionListener {
             visPanel("Oversikt");
         }
         else if(e.getSource()  == knapp[REG_SØKER]){
-        vinduer.add(new RegistrerSøkerPANEL(register, this), "REG SØKER");
+        vinduer.add(new RegistrerSokerPANEL(sregister, this), "REG SØKER");
         visPanel("REG SØKER");
         }
         else if(e.getSource()  == knapp[VIS_SØKER]){
-        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
-        visPanel("Oversikt");
+        vinduer.add(new SokerOversiktPANEL(sregister, this), "OversiktSøker");
+        visPanel("OversiktSøker");
         }
         else if(e.getSource()  == knapp[REG_BOLIG]){
-        vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");
-        visPanel("Oversikt");
+        vinduer.add(new RegistrerBoligPANEL(register,bregister, this), "REG BOLIG");
+        visPanel("REG BOLIG");
         }
         else if(e.getSource()  == knapp[VIS_BOLIG]){
         vinduer.add(new UtleierOversiktPANEL(register, this), "Oversikt");

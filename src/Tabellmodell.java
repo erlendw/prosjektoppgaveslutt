@@ -120,9 +120,48 @@ class Utleiermodell extends Tabellmodell<Utleier> {
 
     }
 
-    public Utleier getValueAt(int rad) {
+    /*public Utleier getValueAt(int rad) {
         return (Utleier) super.getData().get(rad);
+
+    }*/
+}
+class Sokermodell extends Tabellmodell<Soker> { //Tabellmodell for søker
+
+    private final int FØDSELSNUMMER = 0;
+    private final int FORNAVN = 1;
+    private final int ETTERNAVN = 2;
+    private final int ADRESSE = 3;
+    private final int MAIL = 4;
+    private final int TELEFONUMMER = 5;
+    //private final int FIRMA =   sa
+
+    public Sokermodell(String[] kolonnenavn, LinkedList<Soker> data) {
+        super(kolonnenavn, data);
+    }
+
+    public Object getValueAt(int rad, int kol) {
+        Soker søker = (Soker) super.getData().get(rad);
+
+        switch (kol) {
+            case FØDSELSNUMMER:
+                return søker.getFødselsnummer();
+            case FORNAVN:
+                return søker.getFornavn();
+            case ETTERNAVN:
+                return søker.getEtternavn();
+            case ADRESSE:
+                return søker.getAdresse();
+            case MAIL:
+                return søker.getMail();
+            case TELEFONUMMER:
+                return søker.getTelefonnummer();
+            default:
+                return null;
+        }
 
     }
 
+    public Soker getValueAt(int rad) {
+        return (Soker) super.getData().get(rad);
+    }
 }

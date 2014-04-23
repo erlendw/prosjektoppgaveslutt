@@ -16,13 +16,13 @@ leiepris pr måned
 leieavtalens varighet (tidrom)*/
     private Bolig bolig;
     private Utleier utleier;
-    private Søker leietager;
+    private Soker leietager;
     private int pris;
     private Date fra;
     private Date til;
 
 
-    public Kontrakt(Bolig bolig, Utleier utleier, Søker leietager, int pris, Date fra, Date til) {
+    public Kontrakt(Bolig bolig, Utleier utleier, Soker leietager, int pris, Date fra, Date til) {
         this.bolig = bolig;
         this.utleier = utleier;
         this.leietager = leietager;
@@ -40,7 +40,7 @@ leieavtalens varighet (tidrom)*/
         return utleier;
     }
 
-    public Søker getLeietager() {
+    public Soker getLeietager() {
         return leietager;
     }
 

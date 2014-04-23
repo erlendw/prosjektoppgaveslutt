@@ -12,10 +12,10 @@ public class Personregister extends TreeMap<String, Person> implements Register{
 
     @Override
     public boolean leggTil(Object object) {
-        if(object instanceof Person){
-            if(!finnes(((Person) object).getFødselsnummer())){
+        if(object instanceof Utleier){
+            if(!finnes(((Utleier) object).getFødselsnummer())){
 
-                put(((Person) object).getFødselsnummer(),(Person) object);
+                put(((Utleier) object).getFødselsnummer(),(Utleier) object);
                 return true;
 
             }
