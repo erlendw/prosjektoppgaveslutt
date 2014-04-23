@@ -13,10 +13,10 @@ public class Boligregister extends TreeMap<String, Bolig> implements Register{
 
     @Override
     public boolean leggTil(Object object) {
-        if(object instanceof Bolig){
-            if(!finnes(((Bolig) object).getBolignr())){
+        if(object instanceof Enebolig){
+            if(!finnes(((Enebolig) object).getBolignr())){
 
-                put(((Bolig) object).getBolignr(),(Bolig) object);
+                put(((Enebolig) object).getBolignr(),(Enebolig) object);
                 return true;
 
             }

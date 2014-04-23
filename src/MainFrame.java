@@ -34,15 +34,17 @@ public class MainFrame extends JFrame implements ActionListener {
     private Personregister register;
     private Boligregister bregister;
     private Sokerregister sregister;
+    private Leilighetregister legister;
 
 
-    public MainFrame(Personregister register,Boligregister bregister,Sokerregister sregister){
+    public MainFrame(Personregister register,Boligregister bregister,Sokerregister sregister,Leilighetregister legister){
         super("Bolig Browse™");
         setLayout(new BorderLayout());
 
         this.register = register;
         this.sregister = sregister;
         this.bregister = bregister;
+        this.legister = legister;
 
         initialiser();
 
