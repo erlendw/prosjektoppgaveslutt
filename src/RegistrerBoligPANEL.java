@@ -10,40 +10,46 @@ import java.util.*;
  * Created by Erlend on 22/04/14.
  */
 public class RegistrerBoligPANEL extends JPanel implements ActionListener {
-    private JTextField[] felt;
+
+    //felter som gjelder for både enebolig og leilighet
+    private JTextField[] standardfelter;
     private final String[] feltnavn = {"eiersFødselsnummer","adresse","beskrivelse","bolignummer","boareal","antallRom","byggeår","pris","ledigFra"};
 
     //Felter og bokser som bare gjelder enebolig
     private JTextField[] eneboligfelt;
     private final String[] eneboligfeltnavn = {"TomtAreal","antallBad","antallEtasjer"};
-    private JCheckBox[] eneboligbokser;
-    private final String[] eneboligboksnavn = {"røyker","husdyr","balkong","terasse","TVinkludert","internetInkludert","strømInkludert","parkering","kjeller"};
 
     //felter og bokser som bare gjelder leilighet
     private JTextField[] leilighetfelt;
     private final String[] leilighetfeltnavn = {"Antall boder","Etasje"};
+
+    //checkbokser + string
+    private JCheckBox[] eneboligbokser;
     private JCheckBox[] leilighetbokser;
-    private final String[] leilighetboksnavn = {"røyker","husdyr","balkong","terasse","TVinkludert","internetInkludert","strømInkludert","parkering","kjeller","heis"};
+    private final String[]boksnavn = {"røyker","husdyr","balkong","terasse","TVinkludert","internetInkludert","strømInkludert","parkering","kjeller","heis"};
+    private final int minusHeis = 1;
 
-
-
-
+//combobokser
     private JComboBox<String> beliggenhet;
     private JComboBox<String> boligtype;
-
-    private Person eier;
-
-    private Boligregister bregister;
-    private Personregister pregister;
-
-    boolean isTom;
-    boolean isEnebolig;
-    boolean isLeilighet;
 
     String[] boligtypevalg = {"Velg boligtype","Enebolig","Leilighet"};
     String [] bydeler = { "Velg bydel", "Alna", "Bjerke", "Frogner", "Gamle Oslo", "Grorud",
             "Grünerløkka", "Nordre Aker", "Nordstrand", "Sagene", "St. Hanshaugen",
             "Stovner", "Søndre Nordstrand", "Ullern", "Vestre Aker", "Østensjø"};
+
+    private Person eier;
+    private Utleier utleier;
+
+    //registere det er behov for
+    private Boligregister bregister;
+    private Personregister pregister;
+    private Leilighetregister legister;
+
+    boolean isTom;
+    boolean isEnebolig;
+    boolean isLeilighet;
+
 
     private final int EIER = 0;
     private final int ADRESSE = 1;
@@ -64,10 +70,14 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
     private final int STRØM = 6;
     private final int PARKERING = 7;
     private final int KJELLER = 8;
+    private final int HEIS = 9;
 
     private final int TOMTA = 0;
     private final int ANTBAD = 1;
     private final int ANTETG = 2;
+
+    private final int ANTBODER = 0;
+    private final int ETG = 1;
 
     private JTextArea utskriftsområde;
 
@@ -99,10 +109,11 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
 
     private MainFrame parent;
 
-    public RegistrerBoligPANEL(Personregister pregister,Boligregister bregister, MainFrame parent) {
+    public RegistrerBoligPANEL(Personregister pregister,Boligregister bregister,Leilighetregister legister, MainFrame parent) {
         super(new BorderLayout());
         this.pregister = pregister;
         this.bregister = bregister;
+        this.legister = legister;
         this.parent = parent;
         initialiser();
         lagGUI();
@@ -115,11 +126,11 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
 
         utskriftsområde = new JTextArea();
 
-        felt = new JTextField[feltnavn.length];
-        eneboligbokser = new JCheckBox[eneboligboksnavn.length];
+        standardfelter = new JTextField[feltnavn.length];
+        eneboligbokser = new JCheckBox[boksnavn.length-minusHeis];
         eneboligfelt = new JTextField[eneboligfeltnavn.length];
 
-        leilighetbokser = new JCheckBox[leilighetboksnavn.length];
+        leilighetbokser = new JCheckBox[boksnavn.length];
         leilighetfelt = new JTextField[leilighetfeltnavn.length];
 
         overskrift = new JLabel("Registrer ny Bolig");
@@ -144,22 +155,47 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
         knapppanel = new JPanel(new GridLayout(1,2,5,5));
         bunnpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
+        //eneboligunikt
+        eneboligpanel = new JPanel(new BorderLayout());
+        eneboligpanel.setLayout(new BorderLayout());
+        feltpanelEnebolig = new JPanel(new GridLayout(1,3,5,5));
+        bokspanel = new JPanel(new GridLayout(3,3,5,5));
+
+        //leilighetunikt
+        leilighetpanel = new JPanel(new BorderLayout());
+        leilighetpanel.setLayout(new BorderLayout());
+        feltpanelLeilighet = new JPanel(new GridLayout(1,2,5,5));
+        bokspanelLeilighet = new JPanel(new GridLayout(5,2,5,5));
+
+
+
+
         for (int i = 0; i < feltnavn.length; i++) {
-            felt[i] = new JTextField(10);
-            felt[i].setText(feltnavn[i]);
-            felt[i].setHorizontalAlignment(JTextField.CENTER);
+            standardfelter[i] = new JTextField(10);
+            standardfelter[i].setText(feltnavn[i]);
+            standardfelter[i].setHorizontalAlignment(JTextField.CENTER);
         }
 
-        for (int i = 0; i < eneboligboksnavn.length; i++) {
+        for (int i = 0; i < boksnavn.length-minusHeis; i++) {
             eneboligbokser[i] = new JCheckBox();
-            eneboligbokser[i].setText(eneboligboksnavn[i]);
+            eneboligbokser[i].setText(boksnavn[i]);
             eneboligbokser[i].setHorizontalAlignment(JCheckBox.CENTER);
         }
-        for (int i = 0; i < leilighetboksnavn.length; i++) {
+        for (int i = 0; i < boksnavn.length; i++) {
             leilighetbokser[i] = new JCheckBox();
-            leilighetbokser[i].setText(leilighetboksnavn[i]);
+            leilighetbokser[i].setText(boksnavn[i]);
             leilighetbokser[i].setHorizontalAlignment(JCheckBox.CENTER);
         }
+        for (int i = 0; i < eneboligfeltnavn.length; i++) {
+            eneboligfelt[i] = new JTextField(10);
+            eneboligfelt[i].setText(eneboligfeltnavn[i]);
+            eneboligfelt[i].setHorizontalAlignment(JTextField.CENTER);
+            feltpanelEnebolig.add(eneboligfelt[i]);
+        }
+
+
+
+
         beliggenhet = new JComboBox<String>(bydeler);
         boligtype = new JComboBox<String>(boligtypevalg);
 
@@ -193,8 +229,8 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
     }
 
     public void lagGUI() {
-        for (int i = 0; i < felt.length; i++) {
-            feltpanel.add(felt[i]);
+        for (int i = 0; i < standardfelter.length; i++) {
+            feltpanel.add(standardfelter[i]);
         }
         //legger til kombobokser
         boligtypepanel.add(boligtype);
@@ -246,24 +282,18 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
         return isTom;
     }
     public boolean visEneboligpanel(){
+
+
         midtpanel.removeAll();
         midtpanel.revalidate();
         midtpanel.repaint();
-        eneboligpanel = new JPanel(new BorderLayout());
-        eneboligpanel.setLayout(new BorderLayout());
-        feltpanelEnebolig = new JPanel(new GridLayout(1,3,5,5));
         midtpanel.add(enebolig);
         midtpanel.add(bydelpanel, BorderLayout.PAGE_END);
-        bokspanel = new JPanel(new GridLayout(3,3,5,5));
-        for (int i = 0; i < eneboligboksnavn.length; i++) {
+
+        for (int i = 0; i < boksnavn.length-minusHeis; i++) {
             bokspanel.add(eneboligbokser[i]);
         }
-        for (int i = 0; i < eneboligfeltnavn.length; i++) {
-            eneboligfelt[i] = new JTextField(10);
-            eneboligfelt[i].setText(eneboligfeltnavn[i]);
-            eneboligfelt[i].setHorizontalAlignment(JTextField.CENTER);
-            feltpanelEnebolig.add(eneboligfelt[i]);
-        }
+
         eneboligpanel.add(bokspanel, BorderLayout.CENTER);
         eneboligpanel.add(feltpanelEnebolig,BorderLayout.PAGE_END);
         midtpanel.add(eneboligpanel, BorderLayout.CENTER);
@@ -278,13 +308,11 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
         midtpanel.removeAll();
         midtpanel.revalidate();
         midtpanel.repaint();
-        leilighetpanel = new JPanel(new BorderLayout());
-        leilighetpanel.setLayout(new BorderLayout());
-        feltpanelLeilighet = new JPanel(new GridLayout(1,2,5,5));
+
         midtpanel.add(leilighet);
         midtpanel.add(bydelpanel, BorderLayout.PAGE_END);
-        bokspanelLeilighet = new JPanel(new GridLayout(5,2,5,5));
-        for (int i = 0; i < leilighetboksnavn.length; i++) {
+
+        for (int i = 0; i < boksnavn.length; i++) {
             bokspanelLeilighet.add(leilighetbokser[i]);
         }
         for (int i = 0; i < leilighetfeltnavn.length; i++) {
@@ -302,16 +330,24 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
         return isLeilighet;
     }
     public void registrerEnebolig(){
-        String adresse = felt[ADRESSE].getText();
-        int boareal = Integer.parseInt(felt[BOAREAL].getText());
-        int antrom = Integer.parseInt(felt[ANTALLROM].getText());
-        int byggår = Integer.parseInt(felt[BYGGÅR].getText());
-        String beskrivelse = felt[BESKRIVELSE].getText();
-        int pris = Integer.parseInt(felt[PRIS].getText());
-        String ledig = felt[LEDIGFRA].getText();
-        String bolignr = felt[BOLIGNR].getText();
-        String pnr = felt[EIER].getText();
-        Utleier utleier = pregister.get(pnr);
+
+        int boareal = Integer.parseInt(standardfelter[BOAREAL].getText());
+        int antrom = Integer.parseInt(standardfelter[ANTALLROM].getText());
+        int byggår = Integer.parseInt(standardfelter[BYGGÅR].getText());
+        int antbad = Integer.parseInt(eneboligfelt[ANTBAD].getText());
+        int antetg = Integer.parseInt(eneboligfelt[ANTETG].getText());
+        int pris = Integer.parseInt(standardfelter[PRIS].getText());
+
+        String beskrivelse = standardfelter[BESKRIVELSE].getText();
+        String ledig = standardfelter[LEDIGFRA].getText();
+        String bolignr = standardfelter[BOLIGNR].getText();
+        String pnr = standardfelter[EIER].getText();
+        String adresse = standardfelter[ADRESSE].getText();
+
+        double tomta = Double.parseDouble(eneboligfelt[TOMTA].getText());
+
+        utleier = pregister.get(pnr);
+
         boolean røyker = eneboligbokser[RØYKER].isSelected();
         boolean husdyr = eneboligbokser[HUSDYR].isSelected();
         boolean balkong = eneboligbokser[BALKONG].isSelected();
@@ -321,19 +357,56 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
         boolean strøm = eneboligbokser[STRØM].isSelected();
         boolean parkering = eneboligbokser[PARKERING].isSelected();
         boolean kjeller = eneboligbokser[KJELLER].isSelected();
-        int antetg = Integer.parseInt(eneboligfelt[ANTETG].getText());
-        double tomta = Double.parseDouble(eneboligfelt[TOMTA].getText());
-        int antbad = Integer.parseInt(eneboligfelt[ANTBAD].getText());
+
+
 
 
         Enebolig enebolig = new Enebolig(adresse,boareal,antrom,byggår,beskrivelse,pris,ledig,bolignr,utleier,
                             røyker,husdyr,balkong,terasse,tv,internet,strøm,parkering,antetg,kjeller,tomta,antbad);
         bregister.put(bolignr,enebolig);
+
         System.out.println("Registrert");
     }
     public void registrerLeilighet(){
-        System.out.println("Registrer leilighet(not yet supported)");
+
+        int boareal = Integer.parseInt(standardfelter[BOAREAL].getText());
+        int antrom = Integer.parseInt(standardfelter[ANTALLROM].getText());
+        int byggår = Integer.parseInt(standardfelter[BYGGÅR].getText());
+        int antboder = Integer.parseInt(leilighetfelt[ANTBODER].getText());
+        int pris = Integer.parseInt(standardfelter[PRIS].getText());
+        int etg = Integer.parseInt(leilighetfelt[ETG].getText());
+
+        String beskrivelse = standardfelter[BESKRIVELSE].getText();
+        String ledig = standardfelter[LEDIGFRA].getText();
+        String bolignr = standardfelter[BOLIGNR].getText();
+        String pnr = standardfelter[EIER].getText();
+        String adresse = standardfelter[ADRESSE].getText();
+
+
+        utleier = pregister.get(pnr);
+
+        boolean røyker = eneboligbokser[RØYKER].isSelected();
+        boolean husdyr = eneboligbokser[HUSDYR].isSelected();
+        boolean balkong = eneboligbokser[BALKONG].isSelected();
+        boolean terasse = eneboligbokser[TERASSE].isSelected();
+        boolean tv = eneboligbokser[TV].isSelected();
+        boolean internet = eneboligbokser[INTERNET].isSelected();
+        boolean strøm = eneboligbokser[STRØM].isSelected();
+        boolean parkering = eneboligbokser[PARKERING].isSelected();
+        boolean heis = leilighetbokser[HEIS].isSelected();
+
+
+
+
+        Leilighet leilighet = new Leilighet(adresse,boareal,antrom,byggår,beskrivelse,pris,ledig,bolignr,utleier,
+                røyker,husdyr,balkong,terasse,tv,internet,strøm,parkering,antboder,etg,heis);
+        legister.put(bolignr,leilighet);
+
+        System.out.println("Registrert");
+
     }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(isTom){
@@ -367,13 +440,7 @@ public class RegistrerBoligPANEL extends JPanel implements ActionListener {
         }
         else if(e.getSource()==avbryt) {
             parent.visPanel(MainFrame.MAIN_BOARD);
-        }
-        /*if(e.getSource() == registrer){
-            System.out.println("Not yet supported");
-            //registrer();
 
-        }else if(e.getSource() == avbryt){
-            parent.visPanel(MainFrame.MAIN_BOARD);
-        }*/
     }
+}
 }

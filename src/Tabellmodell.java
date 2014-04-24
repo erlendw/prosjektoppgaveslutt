@@ -2,11 +2,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.LinkedList;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Vegard
- * Date: 16.04.14
- * Time: 16:58
- * To change this template use File | Settings | File Templates.
+ SLANGEDREAM COPYRIGHT
  */
 public abstract class Tabellmodell<T> extends AbstractTableModel {
 
@@ -227,8 +223,7 @@ class Leilighetmodell extends Tabellmodell<Leilighet> { //Tabellmodell for enebo
     private final int PRIS = 5;
     private final int LEDIGFRA = 6;
     private final int BOLIGNR = 7;
-    private final int RØYKER = 8;
-    private final int EIER = 9;
+    private final int EIER = 8;
 
     public Leilighetmodell(String[] kolonnenavn, LinkedList<Leilighet> data) {
         super(kolonnenavn, data);

@@ -1,11 +1,7 @@
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Vegard
- * Date: 13.04.14
- * Time: 15:29
- * To change this template use File | Settings | File Templates.
+ SLANGEDREAM COPYRIGHT
  */
 public class Leilighet extends Bolig {
     private int antallBoder;

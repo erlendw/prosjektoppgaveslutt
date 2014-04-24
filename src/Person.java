@@ -1,11 +1,7 @@
 import java.util.TreeMap;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Vegard
- * Date: 13.04.14
- * Time: 13:56
- * To change this template use File | Settings | File Templates.
+ SLANGEDREAM COPYRIGHT
  */
 public abstract class Person implements Menneske {
     private final String FØDSELSNUMMER;

@@ -1,11 +1,7 @@
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Vegard
- * Date: 13.04.14
- * Time: 14:08
- * To change this template use File | Settings | File Templates.
+SLANGEDREAM COPYRIGHT
  */
 
 public abstract class Bolig implements Hjem {
@@ -96,6 +92,7 @@ public abstract class Bolig implements Hjem {
     public Utleier getEier(){
         return eier;
     }
+
     public String getEiersNavn(){
         return eier.getNavn();
     }

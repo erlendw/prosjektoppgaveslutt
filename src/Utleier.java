@@ -1,9 +1,5 @@
 /**
- * Created with IntelliJ IDEA.
- * User: Vegard
- * Date: 13.04.14
- * Time: 15:40
- * To change this template use File | Settings | File Templates.
+ SLANGEDREAM COPYRIGHT
  */
 public class Utleier extends Person {
     private String firma;

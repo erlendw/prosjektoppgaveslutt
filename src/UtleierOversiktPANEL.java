@@ -11,11 +11,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Vegard
- * Date: 16.04.14
- * Time: 16:54
- * To change this template use File | Settings | File Templates.
+ SLANGEDREAM COPYRIGHT
  */
 public class UtleierOversiktPANEL extends JPanel implements ActionListener, DocumentListener {
     private JPanel overskriftpanel;

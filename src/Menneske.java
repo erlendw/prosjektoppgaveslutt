@@ -3,11 +3,7 @@ import java.io.Serializable;
 import java.util.TreeMap;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Vegard
- * Date: 13.04.14
- * Time: 13:44
- * To change this template use File | Settings | File Templates.
+ SLANGEDREAM COPYRIGHT
  */
 public interface Menneske extends Serializable {
     public String getFødselsnummer();

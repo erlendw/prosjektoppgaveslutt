@@ -11,16 +11,11 @@ import java.util.LinkedList;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Vegard
- * Date: 16.04.14
- * Time: 16:54
- * To change this template use File | Settings | File Templates.
+ SLANGEDREAM COPYRIGHT
  */
 public class BoligOversiktPANEL extends JPanel implements ActionListener, DocumentListener {
     private JPanel overskriftpanel;
     private JPanel tabellpanel;
-    private JPanel tabellpanelLeilighet;
     private JPanel søkpanel;
     private JPanel knapppanel;
 
@@ -29,9 +24,7 @@ public class BoligOversiktPANEL extends JPanel implements ActionListener, Docume
     private JTable tabell;
     private JScrollPane scroll;
     private Eneboligmodell modell;
-    private Leilighetmodell leilighetmodell;
     private final String[] kolonner = {"Adresse", "Boareal", "Antall rom", "Byggeår", "Beskrivelse", "Pris", "Ledig fra","Bolignr","Røyker","Eier"};
-    private final String[] leilkolonner = {"Adresse", "Boareal", "Antall rom", "Byggeår", "Beskrivelse", "Pris", "Ledig fra","Bolignr","Eier"};
 
     private JButton visInfo;
     private JButton endre;
@@ -40,20 +33,16 @@ public class BoligOversiktPANEL extends JPanel implements ActionListener, Docume
 
     private LinkedList<Enebolig> eneboligliste;
     private LinkedList<Enebolig> temp;//listen som omfatter søket vårt
-    private LinkedList<Leilighet> leilighetliste;
-    private LinkedList<Leilighet> temp2;
 
     private Utleier utleier;
     private Boligregister register;
-    private Leilighetregister legister;
     private Personregister pregister;
     private MainFrame parent;
 
-    public BoligOversiktPANEL(Boligregister register, Personregister pregister, Leilighetregister legister, MainFrame parent) {
+    public BoligOversiktPANEL(Boligregister register, Personregister pregister, MainFrame parent) {
 
         super(new BorderLayout());
         this.register = register;
-        this.legister = legister;
         this.parent = parent;
 
         initialiser();
@@ -293,7 +282,7 @@ public class BoligOversiktPANEL extends JPanel implements ActionListener, Docume
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == tilbake){
-            parent.visPanel(MainFrame.MAIN_BOARD);
+            parent.visPanel("VIS PROMPT");
         }
     }
 
