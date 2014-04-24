@@ -14,7 +14,7 @@ public class Enebolig extends Bolig {
     private int antallBad;
 
 
-    public Enebolig(String adresse, int boareal, int antallRom, int byggeår, String beskrivelse, int pris, Date ledigFra, String bolignummer, Person eier, boolean røyke, boolean husdyr, boolean balkong, boolean terasse, boolean tvInkludert, boolean internettInkludert, boolean strømInkludert, boolean parkering, int antallEtasjer, boolean kjeller, double tomtareal, int antallBad) {
+    public Enebolig(String adresse, int boareal, int antallRom, int byggeår, String beskrivelse, int pris, String ledigFra, String bolignummer, Utleier eier, boolean røyke, boolean husdyr, boolean balkong, boolean terasse, boolean tvInkludert, boolean internettInkludert, boolean strømInkludert, boolean parkering, int antallEtasjer, boolean kjeller, double tomtareal, int antallBad) {
         super(adresse, boareal, antallRom, byggeår, beskrivelse, pris, ledigFra, bolignummer, eier, røyke, husdyr, balkong, terasse, tvInkludert, internettInkludert, strømInkludert, parkering);
         this.antallEtasjer = antallEtasjer;
         this.kjeller = kjeller;

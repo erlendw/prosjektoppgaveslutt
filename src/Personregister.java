@@ -8,7 +8,7 @@ import java.util.TreeMap;
  * Time: 15:00
  * To change this template use File | Settings | File Templates.
  */
-public class Personregister extends TreeMap<String, Person> implements Register{
+public class Personregister extends TreeMap<String, Utleier> implements Register{
 
     @Override
     public boolean leggTil(Object object) {

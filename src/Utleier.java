@@ -18,6 +18,10 @@ public class Utleier extends Person {
     public String getFirma() {
         return firma;
     }
+    public String getNavn(){
+        String navn = getFornavn() + " " + getEtternavn();
+        return navn;
+    }
 
     public Boligregister getBoligregister() {
         return boligregister;

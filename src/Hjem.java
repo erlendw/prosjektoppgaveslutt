@@ -26,11 +26,11 @@ public interface Hjem extends Serializable {
     public int getPris();
 
 
-    public Date getLedigDato();
+    public String getLedigDato();
 
     public Person getEier();
 
-    public void setEier(Person eier);
+    public void setEier(Utleier eier);
 
     public boolean røyke();
     public boolean husdyr();

@@ -15,9 +15,9 @@ public abstract class Bolig implements Hjem {
     private int byggeår;
     private String beskrivelse;
     private int pris;
-    private Date ledigFra;
+    private String ledigFra;
     private String bolignummer;
-    private Person eier;
+    private Utleier eier;
 
     private boolean røyke;
     private boolean husdyr;
@@ -29,8 +29,10 @@ public abstract class Bolig implements Hjem {
     private boolean strømInkludert;
     private boolean parkering;
 
+    private Personregister register;
 
-    public Bolig(String adresse, int boareal, int antallRom, int byggeår, String beskrivelse, int pris, Date ledigFra, String bolignummer, Person eier, boolean røyke, boolean husdyr, boolean balkong, boolean terasse, boolean tvInkludert, boolean internettInkludert, boolean strømInkludert, boolean parkering) {
+
+    public Bolig(String adresse, int boareal, int antallRom, int byggeår, String beskrivelse, int pris, String ledigFra, String bolignummer, Utleier eier, boolean røyke, boolean husdyr, boolean balkong, boolean terasse, boolean tvInkludert, boolean internettInkludert, boolean strømInkludert, boolean parkering) {
         this.adresse = adresse;
         this.boareal = boareal;
         this.antallRom = antallRom;
@@ -87,20 +89,32 @@ public abstract class Bolig implements Hjem {
     }
 
     @Override
-    public Date getLedigDato() {
+    public String getLedigDato() {
         return ledigFra;
     }
     @Override
-    public Person getEier(){
+    public Utleier getEier(){
         return eier;
     }
-    public void setEier(Person eier){
+    public String getEiersNavn(){
+        return eier.getNavn();
+    }
+    public void setEier(Utleier eier){
         this.eier = eier;
     }
 
     @Override
     public boolean røyke() {
         return røyke;
+    }
+    public String røyketekst(){
+        String s = "";
+        if(røyke==true){
+            s = "Ja";
+        }
+        else
+            s="Nei";
+        return s;
     }
 
     @Override

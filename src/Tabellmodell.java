@@ -165,3 +165,104 @@ class Sokermodell extends Tabellmodell<Soker> { //Tabellmodell for søker
         return (Soker) super.getData().get(rad);
     }
 }
+class Eneboligmodell extends Tabellmodell<Enebolig> { //Tabellmodell for enebolig
+
+    private final int ADRESSE = 0;
+    private final int BOAREAL = 1;
+    private final int ANTROM = 2;
+    private final int BYGGÅR = 3;
+    private final int BESKRIVELSE = 4;
+    private final int PRIS = 5;
+    private final int LEDIGFRA = 6;
+    private final int BOLIGNR = 7;
+    private final int RØYKER = 8;
+    private final int EIER = 9;
+
+    public Eneboligmodell(String[] kolonnenavn, LinkedList<Enebolig> data) {
+        super(kolonnenavn, data);
+    }
+
+    public Object getValueAt(int rad, int kol) {
+        Enebolig enebolig = (Enebolig) super.getData().get(rad);
+
+        switch (kol) {
+            case ADRESSE:
+                return enebolig.getAdresse();
+            case BOLIGNR:
+                return enebolig.getBolignr();
+            case EIER:
+                return enebolig.getEiersNavn();
+            case BOAREAL:
+                return enebolig.getBoareal();
+            case ANTROM:
+                return enebolig.getAntallRom();
+            case BYGGÅR:
+                return enebolig.getByggår();
+            case BESKRIVELSE:
+                return enebolig.getBeskrivelse();
+            case PRIS:
+                return enebolig.getPris();
+            case LEDIGFRA:
+                return enebolig.getLedigDato();
+            case RØYKER:
+                return enebolig.røyketekst();
+            default:
+                return null;
+        }
+
+    }
+
+    public Enebolig getValueAt(int rad) {
+        return (Enebolig) super.getData().get(rad);
+    }
+}
+
+class Leilighetmodell extends Tabellmodell<Leilighet> { //Tabellmodell for enebolig
+
+    private final int ADRESSE = 0;
+    private final int BOAREAL = 1;
+    private final int ANTROM = 2;
+    private final int BYGGÅR = 3;
+    private final int BESKRIVELSE = 4;
+    private final int PRIS = 5;
+    private final int LEDIGFRA = 6;
+    private final int BOLIGNR = 7;
+    private final int RØYKER = 8;
+    private final int EIER = 9;
+
+    public Leilighetmodell(String[] kolonnenavn, LinkedList<Leilighet> data) {
+        super(kolonnenavn, data);
+    }
+
+    public Object getValueAt(int rad, int kol) {
+        Leilighet leilighet = (Leilighet) super.getData().get(rad);
+
+        switch (kol) {
+            case ADRESSE:
+                return leilighet.getAdresse();
+            case BOLIGNR:
+                return leilighet.getBolignr();
+            case EIER:
+                return leilighet.getEiersNavn();
+            case BOAREAL:
+                return leilighet.getBoareal();
+            case ANTROM:
+                return leilighet.getAntallRom();
+            case BYGGÅR:
+                return leilighet.getByggår();
+            case BESKRIVELSE:
+                return leilighet.getBeskrivelse();
+            case PRIS:
+                return leilighet.getPris();
+            case LEDIGFRA:
+                return leilighet.getLedigDato();
+            default:
+                return null;
+        }
+
+    }
+
+    public Leilighet getValueAt(int rad) {
+        return (Leilighet) super.getData().get(rad);
+    }
+}

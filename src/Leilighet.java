@@ -12,7 +12,7 @@ public class Leilighet extends Bolig {
     private int etasje;
     private boolean heis;
 
-    public Leilighet(String adresse, int boareal, int antallRom, int byggeår, String beskrivelse, int pris, Date ledigFra, String bolignummer, Person eier, boolean røyke, boolean husdyr, boolean balkong, boolean terasse, boolean tvInkludert, boolean internettInkludert, boolean strømInkludert, boolean parkering, int antallBoder, int etasje, boolean heis) {
+    public Leilighet(String adresse, int boareal, int antallRom, int byggeår, String beskrivelse, int pris, String ledigFra, String bolignummer, Utleier eier, boolean røyke, boolean husdyr, boolean balkong, boolean terasse, boolean tvInkludert, boolean internettInkludert, boolean strømInkludert, boolean parkering, int antallBoder, int etasje, boolean heis) {
         super(adresse, boareal, antallRom, byggeår, beskrivelse, pris, ledigFra, bolignummer, eier, røyke, husdyr, balkong, terasse, tvInkludert, internettInkludert, strømInkludert, parkering);
         this.antallBoder = antallBoder;
         this.etasje = etasje;

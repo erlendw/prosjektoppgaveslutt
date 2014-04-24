@@ -8,7 +8,7 @@ import java.util.TreeMap;
  * Time: 13:59
  * To change this template use File | Settings | File Templates.
  */
-public class Boligregister extends TreeMap<String, Bolig> implements Register{
+public class Boligregister extends TreeMap<String, Enebolig> implements Register{
 
 
     @Override

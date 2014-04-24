@@ -74,7 +74,7 @@ public class UtleierOversiktPANEL extends JPanel implements ActionListener, Docu
 
 
 
-        for(Map.Entry<String,Person> entry : register.entrySet()) {
+        for(Map.Entry<String,Utleier> entry : register.entrySet()) {
             utleierliste.add((Utleier) entry.getValue());
 
         }
