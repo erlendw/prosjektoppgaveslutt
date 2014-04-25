@@ -78,7 +78,7 @@ public class MainFrame extends JFrame implements ActionListener {
         visLeilighet = new JButton();
         visEnebolig = new JButton();
 
-        visUtleierBrowse = new JButton();
+        visLeietakerBrowse = new JButton();
         visUtleierBrowse = new JButton();
 
         for(int i= 0 ; i < knappenavn.length;i++){
@@ -92,7 +92,7 @@ public class MainFrame extends JFrame implements ActionListener {
         visEnebolig.addActionListener(this);
 
         visUtleierBrowse.addActionListener(this);
-        visUtleierBrowse.addActionListener(this);
+        visLeietakerBrowse.addActionListener(this);
 
 
     }
@@ -167,6 +167,16 @@ public class MainFrame extends JFrame implements ActionListener {
 
             vinduer.add(new LeilighetOversiktPANEL(legister,register,this), "VIS LEILIGHET");
             visPanel("VIS LEILIGHET");
+        }
+
+        else if(e.getSource()  == visLeietakerBrowse){
+
+            System.out.println("briefcase wanker");
+        }
+
+        else if(e.getSource()  == visUtleierBrowse){
+
+            System.out.println("Bwhakabwaka");
         }
 
 
